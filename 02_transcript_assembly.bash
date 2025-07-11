@@ -29,7 +29,7 @@ stringtie \
 	$bam \
 	-p 16 \
 	--ref $assembly \
-	-o ${bam%.*} \
+	-o ${bam%.*}.gtf \
 	-L
 done
 
