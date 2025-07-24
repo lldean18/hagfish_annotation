@@ -19,7 +19,7 @@
 source $HOME/.bash_profile
 conda activate tmux
 tmux new -s braker3
-srun --partition defq --cpus-per-task 1 --mem 50g --time 160:00:00 --pty bash
+srun --partition defq --cpus-per-task 1 --mem 360g --time 160:00:00 --pty bash
 
 # set variables
 wkdir=/gpfs01/home/mbzlld/data/hagfish/RNAseq
@@ -32,7 +32,8 @@ cd $wkdir
 module load singularity/3.8.5
 
 # build and the braker3 container
-singularity build braker3.sif docker://teambraker/braker3:latest
+# think I only need to do this once so hashing out
+#singularity build braker3.sif docker://teambraker/braker3:latest
 
 
 
