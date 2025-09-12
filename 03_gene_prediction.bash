@@ -18,8 +18,9 @@
 
 source $HOME/.bash_profile
 conda activate tmux
-tmux new -s braker3
-srun --partition defq --cpus-per-task 1 --mem 360g --time 160:00:00 --pty bash
+tmux new -s braker3 # create a new session to run braker in
+tmux attach -t braker3 # attach to the new session
+srun --partition defq --cpus-per-task 17 --mem 360g --time 168:00:00 --pty bashi # request compute resources
 
 # set variables
 wkdir=/gpfs01/home/mbzlld/data/hagfish/RNAseq
@@ -42,11 +43,17 @@ module load singularity/3.8.5
 # run braker3 #
 ###############
 
+# this ran for 7 days and then timed out
+# trying first with increased threads
+# going to try running again but separating the brain and notochord input files
+
+
 # run braker3 in the singularity container
 singularity exec braker3.sif braker.pl \
 	--genome $reference \
         --bam=$wkdir/all_hagfish_brain.bam,$wkdir/all_hagfish_notochord.bam \
         --softmasking \
+	--runThreadN 16 \
         --gff3 \
         --AUGUSTUS_ab_initio \
         --species=Eptatretus_stoutii
