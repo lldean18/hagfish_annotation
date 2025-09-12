@@ -53,11 +53,11 @@ singularity exec braker3.sif braker.pl \
 	--genome $reference \
         --bam=$wkdir/all_hagfish_brain.bam,$wkdir/all_hagfish_notochord.bam \
         --softmasking \
-	--runThreadN 16 \
+	--threads 16 \
         --gff3 \
         --AUGUSTUS_ab_initio \
-        --species=Eptatretus_stoutii
-
+        --species=Eptatretus_stoutii \
+	--useexisting
 
 
 
