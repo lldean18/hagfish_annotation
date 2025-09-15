@@ -20,7 +20,7 @@ source $HOME/.bash_profile
 conda activate tmux
 tmux new -s braker3 # create a new session to run braker in
 tmux attach -t braker3 # attach to the new session
-srun --partition defq --cpus-per-task 17 --mem 360g --time 168:00:00 --pty bashi # request compute resources
+srun --partition defq --cpus-per-task 17 --mem 360g --time 168:00:00 --pty bash # request compute resources
 
 # set variables
 wkdir=/gpfs01/home/mbzlld/data/hagfish/RNAseq
