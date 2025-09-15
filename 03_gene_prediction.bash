@@ -45,15 +45,18 @@ module load singularity/3.8.5
 
 # this ran for 7 days and then timed out
 # trying first with increased threads
+# increasing threads didn't work as braker complained that with such a fragmented
+# genome it wanted to run on just 1 thread.
+# Next plan:
 # going to try running again but separating the brain and notochord input files
+# if that fails I could try splitting the genome into chromosomes
 
 
 # run braker3 in the singularity container
 singularity exec braker3.sif braker.pl \
 	--genome $reference \
-        --bam=$wkdir/all_hagfish_brain.bam,$wkdir/all_hagfish_notochord.bam \
+        --bam=$wkdir/all_hagfish_brain.bam \
         --softmasking \
-	--threads 16 \
         --gff3 \
         --AUGUSTUS_ab_initio \
         --species=Eptatretus_stoutii \
@@ -61,7 +64,8 @@ singularity exec braker3.sif braker.pl \
 
 
 
-
+#	--threads 16 \
+#        --bam=$wkdir/all_hagfish_brain.bam,$wkdir/all_hagfish_notochord.bam \
 
 
 # unload singularity
